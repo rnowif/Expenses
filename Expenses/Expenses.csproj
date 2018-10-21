@@ -5,14 +5,12 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <Folder Include="Data" />
-        <Folder Include="Domain\Entities" />
         <Folder Include="wwwroot\" />
     </ItemGroup>
 
     <ItemGroup>
+        <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="2.1.0" />
         <PackageReference Include="Microsoft.AspNetCore.App" />
         <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
     </ItemGroup>
-
 </Project>

@@ -1,7 +1,10 @@
-﻿using Expenses.Domain.UseCases;
+﻿using Expenses.Data;
+using Expenses.Domain.Repositories;
+using Expenses.Domain.UseCases;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -21,7 +24,11 @@ namespace Expenses
     {
       services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
+      var connectionString = Configuration["connectionStrings:expensesConnectionString"];
+      services.AddDbContext<ExpensesDbContext>(o => o.UseNpgsql(connectionString));
+
       services.AddTransient<ISubmitExpense, SubmitExpense>();
+      services.AddTransient<IExpenseRepository, ExpenseRepository>();
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
